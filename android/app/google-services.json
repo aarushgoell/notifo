@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1073924059380",
+    "project_id": "notifoo-flutter-project",
+    "storage_bucket": "notifoo-flutter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073924059380:android:194a23d96871c5e2892ea1",
+        "android_client_info": {
+          "package_name": "com.Growingtech.notifo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHeiFih_CHTQaIYxAA1r56-UWGM7LxrqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
