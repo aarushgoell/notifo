@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:notifo/firebase_options.dart';
 import 'package:notifo/views/login_view.dart';
 import 'package:notifo/views/register_view.dart';
 import 'package:notifo/views/verify_email.dart';
-import 'dart:developer' as devtools show log;
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ void main() {
         routes: {
           'login': (context) => const LoginView(),
           'register': (context) => const Registerview(),
+          '/notes/' : (context) => const NotesView(),
         }),
   );
 }
@@ -48,14 +50,7 @@ class Homepage extends StatelessWidget {
               return const LoginView();
             }
 
-          //  print(user);
-          //  if(user?.emailVerified?? false){
-          //   // print("You are a verified user");
-          // return const Text("Done");
-          //  }else{
-          //   // print("You need to verify your email first");
-          //  return const VerifyEmailView();
-          //  }
+          
           default:
             return const CircularProgressIndicator();
         }
