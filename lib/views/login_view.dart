@@ -62,19 +62,19 @@ class _LoginViewState extends State<LoginView> {
                 );
                 print(userCredential);
               } on FirebaseAuthException catch (e) {
-                if (e.code == "User not found") {
-                  print("User not found");
-                } else if(e.code == "wrong-password"){
-                  print("Wrong password");
+                if (e.code == 'User not found') {
+                  print('User not found');
+                } else if(e.code == 'wrong-password'){
+                  print('Wrong password');
                   print(e.code);
                 }
               }
             },
-            child: const Text("Login"),
+            child: const Text('Login'),
           ),
           TextButton(onPressed: (){
               Navigator.of(context).pushNamedAndRemoveUntil('register', (route) => false,);
-          }, child: const Text("Not Registered yet? Register here"),
+          }, child: const Text('Not Registered yet? Register here'),
             ),
         ],
       ),

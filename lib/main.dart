@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:notifo/firebase_options.dart';
 import 'package:notifo/views/login_view.dart';
 import 'package:notifo/views/register_view.dart';
+import 'package:notifo/views/verify_email.dart';
 
 
 
@@ -41,7 +42,20 @@ class Homepage extends StatelessWidget {
           switch (snapshot.connectionState){
             
             case ConnectionState.done:
-          //  final user = FirebaseAuth.instance.currentUser;
+           final user = FirebaseAuth.instance.currentUser;
+           print(user);
+           if(user != null){
+            if(user.emailVerified){
+             print('Email is verified');
+            }
+           else{
+            print(user);
+            return const VerifyEmailView();
+           }
+           }else{
+            return const LoginView();
+           }
+           return const Text('Done');
           //  print(user);
           //  if(user?.emailVerified?? false){
           //   // print("You are a verified user");
@@ -50,11 +64,10 @@ class Homepage extends StatelessWidget {
           //   // print("You need to verify your email first");
           //  return const VerifyEmailView();
           //  }
-          return const LoginView();
         default:
           return const CircularProgressIndicator();
           }
-        }
+        },
       );
   }
 }

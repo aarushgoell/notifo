@@ -38,7 +38,7 @@ class _RegisterviewState extends State<Registerview> {
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
-              hintText: "Enter your email here",
+              hintText: 'Enter your email here',
             ),
           ),
           TextField(
@@ -47,7 +47,7 @@ class _RegisterviewState extends State<Registerview> {
             enableSuggestions: false,
             autocorrect: false,
             decoration: const InputDecoration(
-              hintText: "Please enter your password",
+              hintText: 'Please enter your password',
             ),
           ),
           TextButton(
@@ -62,20 +62,20 @@ class _RegisterviewState extends State<Registerview> {
                 );
                 print(userCredential);
               } on FirebaseAuthException catch (e) {
-                if (e.code == " weak-password") {
-                  print("Weak password");
-                } else if (e.code == "email-already-in-use") {
+                if (e.code == 'weak-password') {
+                  print('Weak password');
+                } else if (e.code == 'email-already-in-use') {
                   print("email-is-already-in-use");
-                } else if (e.code == "invalid-email") {
-                  print("invalid-email entered");
+                } else if (e.code == 'invalid-email') {
+                  print('invalid email entered');
                 }
               }
             },
-            child: const Text("Register"),
+            child: const Text('Register'),
           ),
           TextButton(onPressed: (){
              Navigator.of(context).pushNamedAndRemoveUntil('login', (route) => false,);
-          }, child: const Text('Already registered? Login here!')),
+          }, child: const Text('Already registered? Login here!'),)
         ],
       ),
     );
