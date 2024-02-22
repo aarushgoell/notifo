@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:notifo/constants/routes.dart';
 import 'package:notifo/utilities/show_error_dialog.dart';
 

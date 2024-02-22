@@ -24,6 +24,7 @@ void main() {
           loginRoute: (context) => const LoginView(),
           registerRoute: (context) => const Registerview(),
           notesRoute : (context) => const NotesView(),
+          verifyEmailRoute:(context) => const VerifyEmailView(),
         }),
   );
 }
@@ -71,7 +72,7 @@ class NotesView extends StatefulWidget {
 
 class _NotesViewState extends State<NotesView> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Notes'),
