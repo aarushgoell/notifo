@@ -1,6 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notifo/constants/routes.dart';
+import 'package:notifo/services/auth/auth_Exceptions.dart';
+import 'package:notifo/services/auth/auth_service.dart';
 import 'package:notifo/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
@@ -57,48 +58,37 @@ class _LoginViewState extends State<LoginView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                await FirebaseAuth.instance.signInWithEmailAndPassword(
-                  email: email,
-                  password: password,
-                );
-                final user = FirebaseAuth.instance.currentUser;
-                if(user?.emailVerified ?? false){
-                  // User's email is verified 
+                await AuthService.firebase()
+                    .logIn(email: email, password: password);
+                final user = AuthService.firebase().currentUser;
+                if (user?.isEmailVerified ?? false) {
+                  // User's email is verified
                   Navigator.of(context).pushNamedAndRemoveUntil(
-                  notesRoute,
-                  (route) => false,
-                );
-                }else{
-                  // User's email is not verified 
+                    notesRoute,
+                    (route) => false,
+                  );
+                } else {
+                  // User's email is not verified
                   Navigator.of(context).pushNamedAndRemoveUntil(
-                  verifyEmailRoute,
-                  (route) => false,
-                );
-
+                    verifyEmailRoute,
+                    (route) => false,
+                  );
                 }
-               
-              } on FirebaseAuthException catch (e) {
-                if (e.code == 'invalid-email') {
+              } on InvalidemailAuthException{
                   await showErrorDialog(
                     context,
                     'invalid-email',
                   );
-                } else if (e.code == 'invalid-credential') {
+              } on InvalidcredentialAuthException{
                   await showErrorDialog(
                     context,
                     'Wrong credentials',
                   );
-                } else {
-                  await showErrorDialog(
-                    context,
-                    'Error: ${e.code}',
-                  );
-                }
-              } catch (e) {
+              } on GenericAuthException{
                 await showErrorDialog(
-                  context,
-                  e.toString(),
-                );
+                    context,
+                    'Authentication Error',
+                  );
               }
             },
             child: const Text('Login'),
